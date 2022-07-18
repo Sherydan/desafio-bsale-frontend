@@ -1,5 +1,26 @@
 let categoriesList = document.querySelector("#categoriesList");
 
+function productCardMaker(url_image, name, price, discount) {
+  let content = `
+  <div class="col-md-3 my-2">
+          <div class="card">
+              <img src="${url_image}" class="card-img-top img-fluid resize" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">${name}</h5>
+                <p class="card-text">$${price}</p>
+                <p class="card-text">Descuento${discount}%</p>
+
+                <div class="text-center">
+                <a href="#" class="btn btn-primary">Agregar</a>
+                </div>
+                
+              </div>
+            </div>
+        </div>`;
+
+  return content;
+}
+
 const listProductsOffers = async () => {
   try {
     response = await fetch("http://localhost:4000/api/products/offers");
@@ -12,23 +33,12 @@ const listProductsOffers = async () => {
       let content = ``;
 
       products.forEach((product, index) => {
-        content += `
-        <div class="col-md-3 my-2">
-          <div class="card">
-              <img src="${product.url_image}" class="card-img-top img-fluid resize" alt="...">
-              <div class="card-body">
-                <h5 class="card-title">${product.name}</h5>
-                <p class="card-text">$${product.price}</p>
-                <p class="card-text">Descuento${product.discount}%</p>
-
-                <div class="text-center">
-                <a href="#" class="btn btn-primary">Agregar</a>
-                </div>
-                
-              </div>
-            </div>
-        </div>`;
-
+        content += productCardMaker(
+          product.url_image,
+          product.name,
+          product.price,
+          product.discount
+        );
         document.querySelector("#productsRowContainer").innerHTML = content;
       });
     }
@@ -57,22 +67,12 @@ const listProductsByCategory = async (id) => {
         }
 
         // create card for each product
-        content += `
-        <div class="col-md-3 my-2">
-          <div class="card">
-              <img src="${product.url_image}" class="card-img-top img-fluid resize" alt="...">
-              <div class="card-body">
-                <h5 class="card-title">${product.name}</h5>
-                <p class="card-text">$${product.price}</p>
-                <p class="card-text">Descuento${product.discount}%</p>
-
-                <div class="text-center">
-                <a href="#" class="btn btn-primary">Agregar</a>
-                </div>
-                
-              </div>
-            </div>
-        </div>`;
+        content += productCardMaker(
+          product.url_image,
+          product.name,
+          product.price,
+          product.discount
+        );
 
         // append card to container
         document.querySelector("#productsRowContainer").innerHTML = content;
