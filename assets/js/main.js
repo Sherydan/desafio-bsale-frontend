@@ -1,4 +1,5 @@
 let categoriesList = document.querySelector("#categoriesList");
+let inputSearch = document.querySelector("#inputSearch");
 
 function productCardMaker(url_image, name, price, discount) {
   let content = `
@@ -20,6 +21,67 @@ function productCardMaker(url_image, name, price, discount) {
 
   return content;
 }
+
+const showPredictedResults = async (name) => {
+  res = document.getElementById("result");
+  res.innerHTML = "";
+  let list = "";
+  if (name == "") {
+    return;
+  }
+
+  try {
+    response = await fetch(`http://localhost:4000/api/products/search/${name}`);
+    const names = await response.json();
+
+    // send error if status is not 200
+    if (response.status !== 200) {
+      throw new Error(response.statusText);
+    } else {
+      names.forEach((name) => {
+        list += `<li>${name.name}</li>`;
+      });
+      res.innerHTML = '<ul id="autocompleteList">' + list + "</ul>";
+    }
+  } catch (error) {
+    // send error if failed to fetch
+    console.log(error);
+  }
+};
+
+const showResults = async (name) => {
+  res = document.getElementById("result");
+  res.innerHTML = "";
+  let list = "";
+  if (name == "") {
+    return;
+  }
+
+  try {
+    response = await fetch(`http://localhost:4000/api/products/search/${name}`);
+    const products = await response.json();
+
+    // send error if status is not 200
+    if (response.status !== 200) {
+      throw new Error(response.statusText);
+    } else {
+      let content = ``;
+
+      products.forEach((product, index) => {
+        content += productCardMaker(
+          product.url_image,
+          product.name,
+          product.price,
+          product.discount
+        );
+        document.querySelector("#productsRowContainer").innerHTML = content;
+      });
+    }
+  } catch (error) {
+    // send error if failed to fetch
+    console.log(error);
+  }
+};
 
 const listProductsOffers = async () => {
   try {
@@ -96,6 +158,14 @@ categoriesList.addEventListener("click", (e) => {
   });
 
   listProductsByCategory(categoryId);
+});
+
+inputSearch.addEventListener("keydown", (e) => {
+  showPredictedResults(e.target.value);
+
+  if (e.key === "Enter") {
+    showResults(inputSearch.value);
+  }
 });
 
 window.addEventListener("load", function () {

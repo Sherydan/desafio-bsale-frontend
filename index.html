@@ -8,13 +8,13 @@
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-        <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/style.css">
     <title>Document</title>
 </head>
 
 <body>
 
-    
+
 
 
 
@@ -54,10 +54,12 @@
                             <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
                         </li>
                     </ul>
-                    <form class="d-flex">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit">Search</button>
-                    </form>
+                    <div class="search">
+                        <input type="text" name="inputSearch" id="inputSearch"  />
+                        <div id="result"></div>
+                    </div>
+                    
+                    
                 </div>
             </div>
         </nav>
@@ -65,19 +67,26 @@
         <div class="row mt-2">
             <div class="col-md-3">
                 <ul class="list-group" id="categoriesList">
-                    <a href="#" class="list-group-item list-group-item-action active" id="listOffers" aria-current="true">
+                    <a href="#" class="list-group-item list-group-item-action active" id="listOffers"
+                        aria-current="true">
                         Ofertas
-                      </a>
-                      <a href="#" class="list-group-item list-group-item-action" data-categoryid="1" id="catBebidaEnergetica">Bebida energetica</a>
-                      <a href="#" class="list-group-item list-group-item-action" data-categoryid="2" id="catPisco">Pisco</a>
-                      <a href="#" class="list-group-item list-group-item-action" data-categoryid="3" id="catRon">Ron</a>
-                      <a href="#" class="list-group-item list-group-item-action" data-categoryid="4" id="catBebida">Bebida</a>
-                      <a href="#" class="list-group-item list-group-item-action" data-categoryid="5" id="catSnack">Snack </a>
-                      <a href="#" class="list-group-item list-group-item-action" data-categoryid="6" id="catCerveza">Cerveza</a>
-                      <a href="#" class="list-group-item list-group-item-action" data-categoryid="7" id="catVodka">Vodka</a>
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action" data-categoryid="1"
+                        id="catBebidaEnergetica">Bebida energetica</a>
+                    <a href="#" class="list-group-item list-group-item-action" data-categoryid="2"
+                        id="catPisco">Pisco</a>
+                    <a href="#" class="list-group-item list-group-item-action" data-categoryid="3" id="catRon">Ron</a>
+                    <a href="#" class="list-group-item list-group-item-action" data-categoryid="4"
+                        id="catBebida">Bebida</a>
+                    <a href="#" class="list-group-item list-group-item-action" data-categoryid="5" id="catSnack">Snack
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action" data-categoryid="6"
+                        id="catCerveza">Cerveza</a>
+                    <a href="#" class="list-group-item list-group-item-action" data-categoryid="7"
+                        id="catVodka">Vodka</a>
 
-                      
-                      
+
+
                     </li>
                 </ul>
             </div>
@@ -120,8 +129,8 @@
                 </div>
 
                 <div class="row" id="productsRowContainer">
-                
-                    
+
+
                 </div>
             </div>
         </div>
