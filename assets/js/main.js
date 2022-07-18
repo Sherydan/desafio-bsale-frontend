@@ -29,12 +29,24 @@ const listProductsOffers= async () => {
 }
 
 const listProductsByCategory = async (id) => {
-    response = await fetch("http://localhost:4000/api/products/category/" + id);
+    
+    response = await fetch(`http://localhost:4000/api/products/category/${id}`);
     const products = await response.json();
+    
     document.querySelector("#productsRowContainer").innerHTML = " ";
+    
+    
+
+
     let content = ``;
 
     products.forEach( (product, index) => {
+        
+        //set default image to product if no image is provided
+        if(product.url_image == null || product.url_image == ""){
+            product.url_image = "assets/img/no-image.png";
+        }
+
         content += `
         <div class="col-md-3 my-2">
           <div class="card">
@@ -59,6 +71,15 @@ const listProductsByCategory = async (id) => {
 
 categoriesList.addEventListener("click", (e) => {
     let categoryId = e.target.dataset.categoryid;
+    // togle active class to the clicked element
+    e.target.classList.toggle("active");
+    // remove active class from all other elements
+    categoriesList.querySelectorAll(".active").forEach(element => {
+        if (element !== e.target) {
+            element.classList.remove("active");
+        }
+    })
+
     listProductsByCategory(categoryId);
 
 });
