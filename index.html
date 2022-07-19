@@ -20,9 +20,9 @@
 
     <div class="container">
 
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#">Navbar</a>
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top text-white">
+            <div class="container">
+                <a class="navbar-brand text-white" href="#">BSALE</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
@@ -31,35 +31,20 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                            <a class="nav-link active text-white" aria-current="page" href="#">Home</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Link</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                Dropdown
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                <li><a class="dropdown-item" href="#">Another action</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item" href="#">Something else here</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-                        </li>
+                        
+
                     </ul>
-                    <div class="search">
-                        <input type="text" name="inputSearch" id="inputSearch"  />
-                        <div id="result"></div>
+                    <h3 class="m-1">Buscar:</h3>
+                    <div class="dropdown">
+                        <input type="text" class="dropdown-toggle" name="inputSearch" id="inputSearch"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                        <ul class="dropdown-menu" aria-labelledby="inputSearch" id="result">
+
+                        </ul>
                     </div>
-                    
-                    
+
                 </div>
             </div>
         </nav>
@@ -68,7 +53,7 @@
             <div class="col-md-3">
                 <ul class="list-group" id="categoriesList">
                     <a href="#" class="list-group-item list-group-item-action active" id="listOffers"
-                        aria-current="true">
+                        aria-current="true" data-categoryid="listOffers">
                         Ofertas
                     </a>
                     <a href="#" class="list-group-item list-group-item-action" data-categoryid="1"
@@ -92,40 +77,18 @@
             </div>
 
             <div class="col-md-9">
-
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item active" aria-current="page">Home</li>
-                    </ol>
-                </nav>
-
-                <!-- <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                      <li class="breadcrumb-item"><a href="#">Home</a></li>
-                      <li class="breadcrumb-item active" aria-current="page">Library</li>
-                    </ol>
-                  </nav>
-                  
-                  <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                      <li class="breadcrumb-item"><a href="#">Home</a></li>
-                      <li class="breadcrumb-item"><a href="#">Library</a></li>
-                      <li class="breadcrumb-item active" aria-current="page">Data</li>
-                    </ol>
-                  </nav> -->
-
-
                 <div class="row">
-                    <div class="input-group mb-3 mb-2">
+                    <!-- <div class="input-group mb-3 mb-2">
                         <h4 class="m-2">Ordenar Por</h4>
-                        <select class="form-select" id="inputGroupSelect03"
+                        <select class="form-select" id="sortProductSelect"
                             aria-label="Example select with button addon">
-                            <option selected>Nombre A-Z</option>
-                            <option value="1">Menor Precio</option>
-                            <option value="2">Mayor precio</option>
-                            <option value="3">Relevancia</option>
+                            <option selected value="name" id="name">Nombre A-Z</option>
+                            <option value="priceLowToHigh" id="priceLowToHigh">Menor Precio</option>
+                            <option value="priceHighToLow" id="priceHighToLow">Mayor precio</option>
                         </select>
-                    </div>
+                    </div> -->
+
+                    <p id="searchingFor" class="fs-3"></p>
                 </div>
 
                 <div class="row" id="productsRowContainer">
@@ -134,6 +97,64 @@
                 </div>
             </div>
         </div>
+    </div>
+
+    
+    <div class="border-top mb-0" id="footer-container">
+        <div class="container">
+            <footer class="row row-cols-1 row-cols-sm-2 row-cols-md-5 py-5 my-5 ">
+              <div class="col mb-3">
+                <a href="/" class="d-flex align-items-center mb-3 link-dark text-decoration-none">
+                  <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
+                </a>
+                <p class="text-muted">LUIS TOBAR © 2022</p>
+              </div>
+          
+              <div class="col mb-3">
+          
+              </div>
+          
+              <div class="col mb-3">
+                <h5>Servicio al cliente</h5>
+                <ul class="nav flex-column">
+                  <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Consulta de boletas</a></li>
+                  <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Políticas y privacidad</a></li>
+                  <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Términos y condiciones</a></li>
+                  <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Bases legales</a></li>
+                  <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Política de cookies</a></li>
+                  <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Cambios y devoluciones</a></li>
+                  
+                </ul>
+              </div>
+          
+              <div class="col mb-3">
+                <h5>Nuestra empresa</h5>
+                <ul class="nav flex-column">
+                  <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Canal de denuncias</a></li>
+                  <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Medidas Covid-19</a></li>
+                  <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Venta a empresas</a></li>
+                  <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Trabaja con nosotros</a></li>
+                  <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Defensoría del proveedor</a></li>
+                  <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Proveedores</a></li>
+                  <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Código de Ética</a></li>
+                  <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Acerca de nosotros</a></li>
+
+                </ul>
+              </div>
+          
+              <div class="col mb-3">
+                <h5>Contactanos</h5>
+                <ul class="nav flex-column">
+                  <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Home</a></li>
+                  <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Features</a></li>
+                  <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Pricing</a></li>
+                  <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">FAQs</a></li>
+                  <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">About</a></li>
+                </ul>
+              </div>
+            </footer>
+          </div>
+
     </div>
 
 
