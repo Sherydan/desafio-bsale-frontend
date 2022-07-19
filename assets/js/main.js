@@ -31,7 +31,7 @@ const showPredictedResults = async (name) => {
   }
 
   try {
-    response = await fetch(`http://localhost:4000/api/products/search/${name}`);
+    response = await fetch(`https://desafio-bsale-backend.herokuapp.com/api/products/search/${name}`);
     const names = await response.json();
 
     // send error if status is not 200
@@ -58,7 +58,7 @@ const showResults = async (name) => {
   }
 
   try {
-    response = await fetch(`http://localhost:4000/api/products/search/${name}`);
+    response = await fetch(`https://desafio-bsale-backend.herokuapp.com/api/products/search/${name}`);
     const products = await response.json();
 
     // send error if status is not 200
@@ -85,7 +85,7 @@ const showResults = async (name) => {
 
 const listProductsOffers = async () => {
   try {
-    response = await fetch("http://localhost:4000/api/products/offers");
+    response = await fetch("https://desafio-bsale-backend.herokuapp.com/api/products/offers");
     const products = await response.json();
 
     // send error if status is not 200
@@ -111,7 +111,7 @@ const listProductsOffers = async () => {
 
 const listProductsByCategory = async (id) => {
   try {
-    response = await fetch(`http://localhost:4000/api/products/category/${id}`);
+    response = await fetch(`https://desafio-bsale-backend.herokuapp.com/api/products/category/${id}`);
     const products = await response.json();
 
     // send error if status is not 200
