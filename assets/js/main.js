@@ -3,6 +3,15 @@ let inputSearch = document.querySelector("#inputSearch");
 let sortProductSelect = document.querySelector("#sortProductSelect");
 let res = document.getElementById("result");
 
+/**
+ * Create a card for each product
+ * @param {string} url_image
+ * @param {string} name
+ * @param {number} price
+ * @param {number} discount
+ * @returns {string}
+ * 
+ */
 function productCardMaker(url_image, name, price, discount) {
   let content = `
   <div class="col-md-3 my-2">
@@ -24,11 +33,20 @@ function productCardMaker(url_image, name, price, discount) {
   return content;
 }
 
-// sanitize string function to remove / and spaces
-const sanitizeString = (string) => {
-  return string.replace(/\s/g, "").replace(/\//g, "");
-};
 
+
+/***************************************************************
+ * 
+ * API CALLS SECTION
+ * 
+ ****************************************************************/
+
+
+/**
+ * Show predicted results when user types in search bar
+ * @param {string} name
+ * @returns {string}
+ */
 const showPredictedResults = async (name) => {
   res.innerHTML = "";
   let list = "";
@@ -58,6 +76,13 @@ const showPredictedResults = async (name) => {
     console.log(error);
   }
 };
+
+/**
+ * Show results when user types in search bar
+ * @param {string} name
+ * @returns {string}
+ * 
+ */
 
 const showResults = async (name) => {
   res.innerHTML = "";
@@ -106,6 +131,11 @@ const showResults = async (name) => {
   }
 };
 
+/** 
+ * Show products offers
+ * @returns {string}
+ * 
+ */
 const listProductsOffers = async () => {
   try {
     response = await fetch(
@@ -117,8 +147,8 @@ const listProductsOffers = async () => {
     if (response.status !== 200) {
       throw new Error(response.statusText);
     } else {
+      // make the card for each product
       let content = ``;
-
       products.forEach((product, index) => {
         content += productCardMaker(
           product.url_image,
@@ -134,6 +164,11 @@ const listProductsOffers = async () => {
   }
 };
 
+/**
+ * List products by category
+ * @param {string} category
+ * @returns {string}
+ */
 const listProductsByCategory = async (id) => {
   try {
     response = await fetch(
@@ -173,6 +208,19 @@ const listProductsByCategory = async (id) => {
   }
 };
 
+/***************************************************************
+ * 
+ * EVENT LISTENERS SECTION
+ * 
+ ****************************************************************/
+
+/**
+ * Event listener for categories list
+ * @param {event} event
+ * calls api function to get products by category
+ * toggles active class on category
+ * removes active class from other categories
+ */
 categoriesList.addEventListener("click", (e) => {
   let categoryId = e.target.dataset.categoryid;
   searchingFor.innerHTML = "";
@@ -194,6 +242,14 @@ categoriesList.addEventListener("click", (e) => {
   });
 });
 
+
+/**
+ * Event listener for search bar
+ * @param {event} event
+ * calls api function to get products by name
+ * show predicted results on list 
+ * show results when enter key is pressed
+ */
 inputSearch.addEventListener("keydown", (e) => {
   
   let searchingFor = document.querySelector("#searchingFor");
@@ -212,6 +268,12 @@ inputSearch.addEventListener("keydown", (e) => {
   }
 });
 
+/**
+ * Event listener for search bar on focus out
+ * @param {event} event
+ * hides <p> tag when search bar is empty
+ * shows what you are searching for in <p> tag
+ */
 inputSearch.addEventListener("focusout", (e) => {
   if (e.target.value == "" || e.target.value == null) {
     searchingFor.innerHTML = "";
@@ -222,6 +284,13 @@ inputSearch.addEventListener("focusout", (e) => {
   }
 });
 
+/**
+ * Event listener for search bar on focus in
+ * @param {event} event
+ * hides <p> tag when search bar is empty
+ * shows what you are searching for in <p> tag
+ * 
+ */
 inputSearch.addEventListener("onfocus", (e) => {
   alert("focus");
   if (e.target.value == "" || e.target.value == null) {
@@ -234,7 +303,13 @@ inputSearch.addEventListener("onfocus", (e) => {
   }
 });
 
-// change inputSearch value when user clicks on res
+/**
+ * res event listener on click
+ * @param {event} event
+ * changes inputSearch value to the clicked result
+ * hides <p> tag when search bar is empty
+ * 
+ */
 res.addEventListener("click", (e) => {
   
   inputSearch.value = e.target.innerHTML;
@@ -244,6 +319,11 @@ res.addEventListener("click", (e) => {
   showResults(inputSearch.value);
 });
 
+/**\
+ * Shows products offers when document is loaded\
+ * @param {event} event
+ * calls api function to get products offers
+ */
 window.addEventListener("load", function () {
   listProductsOffers();
 });
