@@ -1,0 +1,45 @@
+.resize{
+    width: 259px;
+    height: 259px;
+}
+
+
+#result {
+  border: 1px dotted #ccc;
+  padding: 3px;
+}
+#result ul {
+  background-color: white;
+  position : absolute;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+#result ul li {
+  padding: 5px 0;
+}
+#result ul li:hover {
+  background: #eee;
+  
+}
+
+/* Show it is fixed to the top */
+body {
+  min-height: 75rem;
+  padding-top: 4.5rem;
+}
+
+#footer-container{
+  background: url(../img/wave.svg) no-repeat;
+  background-size: cover;
+}
+
+nav{
+  background-color: hsla(5, 82%, 46%, 0.596);
+}
+
+.btn{
+  background-color: hsl(5, 82%, 46%) !important;
+  color: white;
+  
+}
