@@ -33,6 +33,20 @@ function productCardMaker(url_image, name, price, discount) {
   return content;
 }
 
+function categoryListMaker(id, categoryName) {
+  let catName = capitalizeFirstLetter(categoryName);
+  let content = `
+    <a href="#" class="list-group-item list-group-item-action" data-categoryid="${id}"
+    id="catBe">${catName}</a>
+  `
+  return content;
+  
+}
+
+function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
 
 
 /***************************************************************
@@ -163,6 +177,37 @@ const listProductsOffers = async () => {
     console.log(error);
   }
 };
+
+const listCategoryes = async() =>{
+  try {
+    response = await fetch(
+      `http://localhost:4000/api/products/categoryes`
+    );
+    const categoryes = await response.json();
+
+    // send error if status is not 200
+    if (response.status !== 200) {
+      throw new Error(response.statusText);
+    } else {
+
+      let content = ``;
+
+      categoryes.forEach((category, index) => {
+        // create item list for each category
+        content += categoryListMaker(
+          category.id,
+          category.name
+        );
+
+        // append card to container
+        document.querySelector("#categoriesList").innerHTML = content;
+      });
+    }
+  } catch (error) {
+    // send error if failed to fetch
+    console.log(error);
+  };
+}
 
 /**
  * List products by category
@@ -325,5 +370,6 @@ res.addEventListener("click", (e) => {
  * calls api function to get products offers
  */
 window.addEventListener("load", function () {
+  listCategoryes();
   listProductsOffers();
 });
